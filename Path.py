@@ -33,7 +33,7 @@ class Path:
         path_dict = {**path_dict, 'left': self._left} if self._left is not None else path_dict
         path_dict = {**path_dict, 'up': self._up} if self._up is not None else path_dict
         path_dict = {**path_dict, 'right': self._right} if self._right is not None else path_dict
-        
+
         return path_dict.items()
 
     def can_have_new_path(self):

@@ -1,13 +1,42 @@
 from Path import Path
 
+def empty(lst):
+    return len(lst) == 0
 
 class Labyrinth:
     root = None
     connections = None
 
     def __init__(self, root_connections, connections):
+        root_letter = root_connections['letter']
+        self.root = Path(root_letter)
+        state = []
+        
+        for letter, position in root_connections['connections']:
+            self.root.add_path(position, letter)
+
+        for connection_dict in connections:
+            connection_letter = list(connection_dict.keys())[0]
+            to_connection_letter, direction = list(connection_dict.values())[0].values()
+            root_connections_letters = [path_obj.letter for _, path_obj in self.root.to_iter()]
+
+            if connection_letter not in root_connections_letters:
+                tmp = Path(connection_letter)
+                tmp.add_path(direction, to_connection_letter)
+                state.append(tmp)
+            else:
+                for direction, path_obj in self.root.to_iter():
+                    if path_obj.letter == connection_letter:
+                        path_obj.add_path(direction, to_connection_letter)
+
+        while not empty(state):
+            root_conections = [state_path for state_path in state if state_path.letter in [path_obj.letter for _, path_obj in self.root.to_iter()] ]
+            for path_obj in root_connections:
+                pass
+
+        # create logic for search
             
-            
+
     def dfs_search(self, letter_to_found):
         response = None
         opened_stack = [self.root]
