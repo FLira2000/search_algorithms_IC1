@@ -33,6 +33,7 @@ class Labyrinth:
                     if path_obj.letter == connection_letter:
                         path_obj.add_path(direction, to_connection_letter)
 
+        # TODO need to manage state in order to work
         print("done.")
 
     def dfs_search(self, letter_to_found):
