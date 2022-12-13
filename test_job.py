@@ -28,4 +28,9 @@ graph_root = {
     ]
 }
 
-# lab = Labyrinth(graph)
+lab = Labyrinth(graph_root, graph)
+lab.bfs_search('S')
+input("press anything to continue.")
+lab.dfs_search('S')
+input("press anything to continue.")
+lab.backtrack_search('S')
